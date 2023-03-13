@@ -1,6 +1,8 @@
 # Inventory Interface Information Injector
 Injects custom icons and other information into SkyUI's inventory item interfaces.
 
+Port of original mod by Parapets to Skyrim version 1.5.97.
+
 ## Requirements
 * [CMake](https://cmake.org/)
 	* Add this to your `PATH`
@@ -16,7 +18,7 @@ Injects custom icons and other information into SkyUI's inventory item interface
 
 ## Building
 ```
-git clone https://github.com/Exit-9B/InventoryInjector
+git clone https://github.com/Fuzzlesz/InventoryInjector-SE
 cd InventoryInjector
 git submodule init
 git submodule update
