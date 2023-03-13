@@ -15,14 +15,8 @@ namespace Hooks
 
 	void MovieManager::Install()
 	{
-#ifndef SKYRIMVR
 		auto hook = REL::Relocation<std::uintptr_t>(
-			RE::Offset::BSScaleformManager::LoadMovie,
-			0x1DD);
-#else
-		auto hook = REL::Relocation<std::uintptr_t>(
-			RE::Offset::BSScaleformManager::LoadMovie.address() + 0x1D9);
-#endif
+			REL::ID(80302), 0x1D9);
 
 		if (!REL::make_pattern<"FF 15">().match(hook.address())) {
 			util::report_and_fail("Failed to install MovieManager");

@@ -51,13 +51,6 @@ function(SKSEPlugin_Add TARGET)
 
 	set(SkyrimSE_PATH ${SkyrimSE_PATH} CACHE PATH "Installed path of Skyrim Special Edition.")
 
-	cmake_host_system_information(
-		RESULT SkyrimVR_PATH
-		QUERY WINDOWS_REGISTRY "HKLM/SOFTWARE/Bethesda Softworks/Skyrim VR"
-		VALUE "installed path"
-		VIEW 32
-	)
-
 	set(GAME_DIR ${SkyrimSE_PATH})
 
 	add_library("${TARGET}" SHARED)
