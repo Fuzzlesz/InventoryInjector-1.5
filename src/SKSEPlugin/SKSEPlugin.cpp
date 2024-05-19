@@ -1,3 +1,4 @@
+#include "AS/Functions.h"
 #include "Data/CustomDataManager.h"
 #include "Hooks/MovieManager.h"
 
@@ -61,6 +62,8 @@ extern "C" DLLEXPORT bool SKSEAPI SKSEPlugin_Load(const SKSE::LoadInterface* a_s
 
 	SKSE::Init(a_skse);
 	SKSE::AllocTrampoline(8);
+
+	SKSE::GetScaleformInterface()->Register(&AS::RegisterFuncs, "InventoryInjector");
 
 	SKSE::GetMessagingInterface()->RegisterListener(
 		[](auto a_msg)
