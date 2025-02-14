@@ -172,6 +172,31 @@ namespace Hooks
 			return;
 		}
 
+		if (!a_entryObject.HasMember("keywords")) {
+			RE::GFxValue formId;
+			a_entryObject.GetMember("formId", &formId);
+		
+			const auto object = RE::TESForm::LookupByID(static_cast<RE::FormID>(formId.GetSInt()));
+			if (const auto keywordForm = skyrim_cast<RE::BGSKeywordForm*>(object)) {
+				RE::GFxValue keywords;
+				a_movie->CreateObject(&keywords);
+		
+				for (uint32_t i = 0; i < keywordForm->GetNumKeywords(); i++) {
+					const auto keyword = keywordForm->GetKeywordAt(i).value_or(nullptr);
+					if (!keyword)
+						continue;
+		
+					const auto editorId = keyword->GetFormEditorID();
+					if (!editorId || !editorId[0])
+						continue;
+		
+					keywords.SetMember(editorId, true);
+				}
+				
+				a_entryObject.SetMember("keywords", keywords);
+			}
+		}
+
 		switch (static_cast<RE::FormType>(formType.GetNumber())) {
 		case RE::FormType::Spell:
 		case RE::FormType::Scroll:
